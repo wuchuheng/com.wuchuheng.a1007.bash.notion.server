@@ -6,19 +6,20 @@ package graph
 
 import (
 	"context"
-	"fmt"
-
 	"server.notion.a1007.wuchuheng.com/m/v2/graph/model"
+	"server.notion.a1007.wuchuheng.com/m/v2/graph/resolver/message_resolver"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+// CreateMessage is the resolver for the createMessage field.
+func (r *mutationResolver) CreateMessage(ctx context.Context, input model.NewMessage) (*model.Message, error) {
+	messageResolver := message_resolver.MessageResolver{}
+	return messageResolver.CreateMessage(ctx, input)
 }
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+// Messages is the resolver for the messages field.
+func (r *queryResolver) Messages(ctx context.Context) ([]*model.Message, error) {
+	messageResolver := message_resolver.MessageResolver{}
+	return messageResolver.Messages(ctx)
 }
 
 // Mutation returns MutationResolver implementation.
