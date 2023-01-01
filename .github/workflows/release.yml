@@ -2,10 +2,8 @@ name: To_release_project
 
 on:
   push:
-    branches:
-      - feature
-      - dev
-      - master
+    tags:
+      - '*'
 jobs:
   linux:
     runs-on: ubuntu-latest
