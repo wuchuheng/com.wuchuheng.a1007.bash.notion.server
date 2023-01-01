@@ -1,4 +1,4 @@
-name: Dev
+name: To_release_project
 
 on:
   push:
@@ -14,3 +14,5 @@ jobs:
         with:
           go-version: '^1.19.4'
       - run: go version
+      - name: Compile binary files for each platform.
+        run: make
