@@ -13,5 +13,11 @@ type Query {
 }
 
 type Mutation {
+  """ 创建消息 """
   createMessage(input: NewMessage!):Message!
+}
+
+type Subscription {
+  """ 新消息 """
+  newMessage: Message!
 }

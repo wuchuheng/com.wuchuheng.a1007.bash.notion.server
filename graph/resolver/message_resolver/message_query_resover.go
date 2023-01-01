@@ -6,5 +6,7 @@ import (
 )
 
 func (r *MessageResolver) Messages(ctx context.Context) ([]*model.Message, error) {
-	return messageList, nil
+	var result []*model.Message
+
+	return result, nil
 }

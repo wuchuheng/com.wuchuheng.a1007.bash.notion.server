@@ -6,6 +6,7 @@ package graph
 
 import (
 	"context"
+
 	"server.notion.a1007.wuchuheng.com/m/v2/graph/model"
 	"server.notion.a1007.wuchuheng.com/m/v2/graph/resolver/message_resolver"
 )
@@ -22,11 +23,21 @@ func (r *queryResolver) Messages(ctx context.Context) ([]*model.Message, error) 
 	return messageResolver.Messages(ctx)
 }
 
+// NewMessage is the resolver for the newMessage field.
+func (r *subscriptionResolver) NewMessage(ctx context.Context) (<-chan *model.Message, error) {
+	messageResolver := message_resolver.MessageResolver{}
+	return messageResolver.NewMessage(ctx)
+}
+
 // Mutation returns MutationResolver implementation.
 func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
+// Subscription returns SubscriptionResolver implementation.
+func (r *Resolver) Subscription() SubscriptionResolver { return &subscriptionResolver{r} }
+
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
+type subscriptionResolver struct{ *Resolver }
